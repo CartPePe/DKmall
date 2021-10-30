@@ -1,7 +1,5 @@
 import  Vue from 'vue';
 import VueRouter from "vue-router";
-import Category from "../views/category/Category";
-import Cart from "../views/cart/Cart";
 const Home = () => import('../views/home/Home')
 const File = () => import('../views/file/File')
 const Category = () => import('../views/category/Category')
@@ -17,24 +15,24 @@ const routes = [
   },
   {
     path: '/home',
-    components: Home
+    component: Home
   },
   {
     path: '/category',
-    components: Category
+    component: Category
   },
   {
     path: '/cart',
-    components: Cart
+    component: Cart
   },
   {
     path: '/file',
-    components: File
+    component: File
   }
 ]
 
 const router = new VueRouter({
-
+  routes
 })
 //导出路由
 export default router
