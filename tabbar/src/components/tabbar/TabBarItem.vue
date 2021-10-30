@@ -30,4 +30,5 @@ export default {
   margin-top: 3px;
   vertical-align: middle;
 }
+
 </style>
