@@ -1,13 +1,22 @@
 <template>
-  <h2>档案</h2>
+  <div>
+    <scroll class="content">
+    </scroll>
+  </div>
 </template>
 
 <script>
+import Scroll from "@/components/common/scroll/Scroll";
 export default {
-  name: "File"
+  name: "File",
+  components: {
+    Scroll
+  }
 }
 </script>
 
 <style scoped>
-
+.content {
+  height: 1000px;
+}
 </style>

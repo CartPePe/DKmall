@@ -14,7 +14,7 @@ export default {
     //动态决定tabbar字体颜色
     activeColor: {
         type: String,
-        default: '#ff6978'
+        default: '#fa2b19'
     }
   },
   data() {
@@ -44,6 +44,6 @@ export default {
   text-align: center;
   height: 49px;
   font-size: 12px;
-
+  padding-top: 5px;
 }
 </style>

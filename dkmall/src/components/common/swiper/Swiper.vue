@@ -27,7 +27,7 @@ export default {
     },
     moveRatio: {
       type: Number,
-      default: 2.5
+      default: 0.25
     },
     showIndicator: {
       type: Boolean,
@@ -49,7 +49,7 @@ export default {
       this.handleDom();
       // 2.开启定时器
       this.startTimer();
-    }, 1000)
+    }, 3000)
   },
   methods: {
     /**
@@ -190,8 +190,6 @@ export default {
 }
 .swiper {
   display: flex;
-  width: 100%;
-  height: 180px;
 }
 .indicator {
   display: flex;
