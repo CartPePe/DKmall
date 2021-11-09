@@ -1,161 +1,105 @@
 <template>
-  <div class="shop-info">
-    <div class="shop-top">
-      <img :src="showImage">
-      <span class="title">{{shop.name}}</span>
+  <div class="shops">
+    <div class="shop-logo">
+      <img :src="shops.shopLogo" alt />
+      <span>{{shops.name}}</span>
     </div>
-    <div class="shop-middle">
-      <div class="shop-middle-item shop-middle-left">
-        <div class="info-sells">
-          <div class="sells-count">
-            {{shop.sells | sellCountFilter}}
-          </div>
-          <div class="sells-text">总销量</div>
+    <div class="shop-info">
+      <div class="left">
+        <div class="cFans">
+          <span class="shop-font">{{shops.cFans}}</span>
+          <br />
+          <span class="shop-message">粉丝</span>
         </div>
-        <div class="info-goods">
-          <div class="goods-count">
-            {{shop.goodsCount}}
-          </div>
-          <div class="goods-text">全部宝贝</div>
+        <div class="cSells">
+          <span class="shop-font">{{shops.cSells}}</span>
+          <br />
+          <span class="shop-message">总销量</span>
+        </div>
+        <div class="cGoods">
+          <span class="shop-font">{{shops.cGoods}}</span>
+          <br />
+          <span class="shop-message">宝贝</span>
         </div>
       </div>
-      <div class="shop-middle-item shop-middle-right">
+
+      <div class="right">
         <table>
-          <tr v-for="(item, index) in shop.score" :key="index">
+          <tr v-for="(item,index) in shops.score" :key="index">
             <td>{{item.name}}</td>
-            <td class="score" :class="{'score-better': item.isBetter}">{{item.score}}</td>
-            <td class="better" :class="{'better-more': item.isBetter}"><span>{{item.isBetter ? '高':'低'}}</span></td>
+            <td :style="{color:item.isBetter?'#ff5777':'green'}">{{item.score}}</td>
+            <td
+              class="action"
+              :style="{background:item.isBetter?'#ff5777':'#5ea732'}"
+            >{{item.isBetter?"高":"低"}}</td>
           </tr>
         </table>
       </div>
     </div>
-    <div class="shop-bottom">
-      <div class="enter-shop">进店逛逛</div>
-    </div>
+
+    <div class="enter-shop">进店逛逛</div>
   </div>
 </template>
 <script>
 export default {
-  name: 'DetailShopInfo',
-  props:{
-    shop:{
+  name: "DetailShopInfo",
+  props: {
+    shops: {
       type: Object,
-      default(){
-        return {}
+      default() {
+        return {};
       }
     }
-  },
-  data() {
-    return {
-
-    }
-  },
-  computed:{
-    showImage(){
-      return "http:" + this.shop.logo;
-    }
-  },
-  filters: {
-    sellCountFilter: function (value) {
-      if (value < 10000) return value;
-      return (value/10000).toFixed(1) + '万'
-    }
-  },
-  mounted(){
-    console.log(this.shop);
   }
-}
+};
 </script>
-
 <style scoped>
-.shop-info {
-  padding: 25px 8px;
-  border-bottom: 5px solid #f2f5f8;
-}
 
-.shop-top {
-  line-height: 45px;
-  /* 让元素垂直中心对齐 */
-  display: flex;
-  align-items: center;
+.shop-logo {
+  padding: 15px 0 15px 5px;
+  border-bottom: 1px solid #f6f6f6;
 }
-
-.shop-top img {
-  width: 45px;
-  height: 45px;
+.shop-logo img {
+  width: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,.1);
 }
-
-.shop-top .title {
-  margin-left: 10px;
-  vertical-align: center;
+.shop-logo span {
+  padding: 2px 8px;
+  vertical-align: 13px;
 }
-
-.shop-middle {
-  margin-top: 15px;
+.shop-info{
+  margin-top: 5px;
+}
+.left {
   display: flex;
   align-items: center;
+  border-right: 1px solid black;
+  height: 60px;
 }
-
-.shop-middle-item {
+.left div {
   flex: 1;
-}
-
-.shop-middle-left {
-  display: flex;
-  justify-content: space-evenly;
-  color: #333;
+  padding: 5px;
   text-align: center;
-  border-right: 1px solid rgba(0,0,0,.1);
 }
-
-.sells-count, .goods-count {
+.shop-font {
   font-size: 18px;
 }
-
-.sells-text, .goods-text {
-  margin-top: 10px;
+.shop-message {
+  padding: 5px 5px;
   font-size: 12px;
 }
-
-.shop-middle-right {
-  font-size: 13px;
-  color: #333;
+.right {
+  margin-right: 25px;
 }
-
-.shop-middle-right table {
-  width: 120px;
-  margin-left: 30px;
+.right tr {
+  margin-top: 5px;
 }
-
-.shop-middle-right table td {
-  padding: 5px 0;
+.right td {
+  padding: 0 0 0 5px;
 }
-
-.shop-middle-right .score {
-  color: #5ea732;
-}
-
-.shop-middle-right .score-better {
-  color: #f13e3a;
-}
-
-.shop-middle-right .better span {
-  background-color: #5ea732;
+.action {
   color: #fff;
-  text-align: center;
 }
-
-.shop-middle-right .better-more span {
-  background-color: #f13e3a;
-}
-
-.shop-bottom {
-  text-align: center;
-  margin-top: 10px;
-}
-
 .enter-shop {
   display: inline-block;
   font-size: 14px;
@@ -165,5 +109,8 @@ export default {
   text-align: center;
   line-height: 30px;
   border-radius: 10px;
+  position: relative;
+  left: 50%;
+  margin: 10px 0 0 -75px;
 }
 </style>
